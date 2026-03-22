@@ -1,0 +1,1 @@
+-- Ergänzt die Historientabelle und zugehörige Indizes.

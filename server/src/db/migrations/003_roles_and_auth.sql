@@ -1,0 +1,1 @@
+-- Ergänzt Rollen- und Sitzungsgrundlagen für spätere Rechteverwaltung.

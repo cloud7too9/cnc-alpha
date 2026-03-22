@@ -1,0 +1,1 @@
+// Enthält eventnahe Frontend-Hilfstypen.

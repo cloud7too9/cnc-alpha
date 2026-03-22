@@ -1,0 +1,1 @@
+// Kapselt Datumsformatierung und Datumsvergleiche.
