@@ -1,0 +1,362 @@
+/* =============================================================
+   CNC-Werkstatt Alpha — Design System
+   =============================================================
+   Dark-Industrial-Design mit Ablaufkette-Styles
+   ============================================================= */
+
+:root {
+  --bg-base: #0a0c10;
+  --bg-card: #111318;
+  --bg-input: #0f1117;
+  --bg-hover: #1a1d25;
+
+  --border: #1e293b;
+  --border-light: #334155;
+
+  --text-primary: #f8fafc;
+  --text-secondary: #e2e8f0;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+
+  --accent-amber: #f59e0b;
+  --accent-amber-dark: #d97706;
+  --accent-blue: #3b82f6;
+  --accent-blue-light: #60a5fa;
+  --accent-green: #22c55e;
+  --accent-green-light: #4ade80;
+  --accent-red: #ef4444;
+
+  --status-offen-bg: #1e293b;
+  --status-offen-text: #94a3b8;
+  --status-offen-border: #334155;
+  --status-offen-dot: #64748b;
+
+  --status-bearbeitung-bg: #172554;
+  --status-bearbeitung-text: #60a5fa;
+  --status-bearbeitung-border: #1e40af;
+  --status-bearbeitung-dot: #3b82f6;
+
+  --status-fertig-bg: #052e16;
+  --status-fertig-text: #4ade80;
+  --status-fertig-border: #166534;
+  --status-fertig-dot: #22c55e;
+
+  --font-main: 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Fira Code', monospace;
+}
+
+/* === GLOBAL RESET === */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-main);
+  background: var(--bg-base);
+  color: var(--text-secondary);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* === NAV TAB === */
+.nav-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: pointer;
+  font-family: var(--font-main);
+}
+
+.nav-tab:hover {
+  border-color: var(--border-light);
+  color: var(--text-primary);
+}
+
+.nav-tab.active {
+  background: var(--accent-amber);
+  border-color: var(--accent-amber);
+  color: #0f1117;
+}
+
+/* === STATUS BADGE === */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.status-badge.offen {
+  background: var(--status-offen-bg);
+  border: 1px solid var(--status-offen-border);
+  color: var(--status-offen-text);
+}
+
+.status-badge.bearbeitung {
+  background: var(--status-bearbeitung-bg);
+  border: 1px solid var(--status-bearbeitung-border);
+  color: var(--status-bearbeitung-text);
+}
+
+.status-badge.fertig {
+  background: var(--status-fertig-bg);
+  border: 1px solid var(--status-fertig-border);
+  color: var(--status-fertig-text);
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.status-badge.offen .status-dot        { background: var(--status-offen-dot); }
+.status-badge.bearbeitung .status-dot  { background: var(--status-bearbeitung-dot); }
+.status-badge.fertig .status-dot       { background: var(--status-fertig-dot); }
+
+/* === CARD === */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.card-header {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-header h2 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.card-body {
+  padding: 16px;
+}
+
+/* === AUFTRAGS-TABELLE (Büro) — AUSKLAPPBARE ZEILEN === */
+.auftrag-header-row {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  gap: 0;
+}
+
+.auftrag-row {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--bg-hover);
+  cursor: pointer;
+  transition: background 0.15s;
+  font-size: 13px;
+  gap: 0;
+}
+
+.auftrag-row:hover {
+  background: var(--bg-hover);
+}
+
+.auftrag-row.expanded {
+  background: rgba(59, 130, 246, 0.04);
+  border-bottom-color: transparent;
+}
+
+/* Ausgeklappter Bereich */
+.auftrag-expand {
+  padding: 0 16px 16px 48px;
+  background: rgba(59, 130, 246, 0.02);
+  border-bottom: 1px solid var(--border);
+  animation: expandIn 0.2s ease-out;
+}
+
+@keyframes expandIn {
+  from {
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    max-height: 400px;
+    transform: translateY(0);
+  }
+}
+
+/* === ABLAUFKETTE: INLINE-BESTÄTIGUNG === */
+.bestaetigung-inline {
+  margin-top: 6px;
+  margin-left: 18px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  background: rgba(245, 158, 11, 0.06);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Bestätigungs-Buttons */
+.btn-bestaetigen-ja {
+  padding: 6px 18px;
+  border-radius: 6px;
+  border: 1px solid var(--status-fertig-border);
+  background: var(--status-fertig-bg);
+  color: var(--status-fertig-text);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: var(--font-main);
+  transition: all 0.15s;
+}
+
+.btn-bestaetigen-ja:hover {
+  background: #0a3d1e;
+  border-color: var(--accent-green);
+}
+
+.btn-bestaetigen-ja:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-bestaetigen-nein {
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-dim);
+  font-size: 13px;
+  cursor: pointer;
+  font-family: var(--font-main);
+  transition: all 0.15s;
+}
+
+.btn-bestaetigen-nein:hover {
+  border-color: var(--border-light);
+  color: var(--text-muted);
+}
+
+.btn-bestaetigen-nein:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* === CONNECTION INDICATOR === */
+.connection-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.connection-badge.online {
+  background: #052e16;
+  border: 1px solid #166534;
+  color: #4ade80;
+}
+
+.connection-badge.offline {
+  background: #450a0a;
+  border: 1px solid #991b1b;
+  color: #fca5a5;
+}
+
+.connection-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.connection-badge.online .connection-dot {
+  background: #22c55e;
+  box-shadow: 0 0 6px #22c55e;
+  animation: pulse 2s infinite;
+}
+
+.connection-badge.offline .connection-dot {
+  background: #ef4444;
+}
+
+/* === ANIMATIONS === */
+.row-flash {
+  animation: rowFlash 1.5s ease-out;
+}
+
+@keyframes rowFlash {
+  0%   { background: rgba(59, 130, 246, 0.25); }
+  100% { background: transparent; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.4; }
+}
+
+/* === TOAST === */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  padding: 14px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  animation: slideIn 0.3s ease-out;
+  z-index: 1000;
+}
+
+.toast.success {
+  background: #14532d;
+  border: 1px solid #16a34a;
+  color: #86efac;
+}
+
+.toast.error {
+  background: #450a0a;
+  border: 1px solid #991b1b;
+  color: #fca5a5;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100px); opacity: 0; }
+  to   { transform: translateX(0); opacity: 1; }
+}
