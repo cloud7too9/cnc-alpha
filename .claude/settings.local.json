@@ -1,7 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(find c:UsersLeo.vscodecnc-alpha -maxdepth 3 -type f -name README* -o -name package.json -o -name CLAUDE.md -o -name .git*)"
-    ]
-  }
-}
