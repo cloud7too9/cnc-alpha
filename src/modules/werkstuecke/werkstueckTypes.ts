@@ -1,5 +1,5 @@
 // =============================================================
-// Werkstueck Types — Definition / Fertigungsvorlage
+// Werkstueck Types — Einzelteil (Fertigungsebene)
 // =============================================================
 
 import type { ArbeitsgangPlan } from "../arbeitsgaenge/arbeitsgangTypes";
@@ -11,6 +11,6 @@ export type Werkstueck = {
   rohmaterialTyp: string;
   fertigmass: string;
   saegemass: string;
-  arbeitsgaenge: ArbeitsgangPlan[];
+  verarbeitungskette: ArbeitsgangPlan[];
   zeichnung: string | null;
 };
